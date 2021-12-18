@@ -13,6 +13,10 @@ namespace ProjectP0
             // customerObj.CustomerLastName = Console.ReadLine();
             // Console.WriteLine($"Given Customer First and Last Names are : {customerObj.CustomerFirstName} {customerObj.CustomerLastName} ");
 
+            SqlConnectionApp sqlConnectionObject = new SqlConnectionApp();
+            Console.WriteLine(sqlConnectionObject.DatabaseConn());
+
+
             StoreClass storeObj = new StoreClass();
             Console.WriteLine($"You picked store locted in : {storeObj.StoreLocations()}");
 
