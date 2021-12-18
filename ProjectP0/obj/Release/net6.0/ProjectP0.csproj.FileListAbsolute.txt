@@ -1,0 +1,15 @@
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ProjectP0.exe
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ProjectP0.deps.json
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ProjectP0.runtimeconfig.json
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ProjectP0.dll
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ref\ProjectP0.dll
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\bin\Release\net6.0\ProjectP0.pdb
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.AssemblyInfoInputs.cache
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.AssemblyInfo.cs
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.csproj.CoreCompileInputs.cache
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.dll
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ref\ProjectP0.dll
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.pdb
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.genruntimeconfig.cache
+C:\Users\ashwi\RevatureGit\ProjectP0\ProjectP0\obj\Release\net6.0\ProjectP0.csproj.AssemblyReference.cache

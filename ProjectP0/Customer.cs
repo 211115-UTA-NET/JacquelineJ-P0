@@ -9,9 +9,9 @@ namespace ProjectP0
     public class Customer
     {
         public int CustomerId { get; set; }
-        public string CustomerFirstName { get; set; }
+        public string? CustomerFirstName { get; set; }
         
-        public string CustomerLastName { get; set; }
+        public string? CustomerLastName { get; set; }
            
     }
 }
