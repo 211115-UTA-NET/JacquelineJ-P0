@@ -13,8 +13,16 @@ namespace ProjectP0
             // customerObj.CustomerLastName = Console.ReadLine();
             // Console.WriteLine($"Given Customer First and Last Names are : {customerObj.CustomerFirstName} {customerObj.CustomerLastName} ");
 
-            SqlConnectionApp sqlConnectionObject = new SqlConnectionApp();
-            Console.WriteLine(sqlConnectionObject.DatabaseConn());
+            //Console.WriteLine("Inserting into Customer table");
+            SqlConnectionApp objDB = new SqlConnectionApp();
+            //Console.WriteLine(objDB.Insert());
+            //Console.WriteLine("Insert Complete...");
+
+            Console.WriteLine("Fetching from Customer table"); 
+            Console.WriteLine(objDB.Fetch());
+            Console.WriteLine("Fetch Complete...");
+
+
 
 
             StoreClass storeObj = new StoreClass();

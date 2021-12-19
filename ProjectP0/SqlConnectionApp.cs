@@ -9,44 +9,91 @@ namespace ProjectP0
 {
     public class SqlConnectionApp
     {
-        public string DatabaseConn()
+       private SqlConnection DBConnection()
         {
-            // var dataSource = "2111-sql-jack.database.windows.net";
-            //var dataBase = "jackie_Project0DB";
-            //var userName = "SQLDBADMIN";
-            //var password = "MyFav1234%";
-
-            string connectString = @"Server=tcp:2111-sql-jack.database.windows.net,1433;Initial Catalog=2111-sql-jack;Persist Security Info=False;User ID=SQLDBADMIN;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectString = "Data Source=2111-sql-jack.database.windows.net;Initial Catalog=jackie_Project0DB;Persist Security Info=False;User ID=SQLDBADMIN;Password=MyFav1234%";
 
             SqlConnection conn = new SqlConnection(connectString);
-
             try
             {
                 Console.WriteLine("Connecting to databse...");
                 conn.Open();
                 Console.WriteLine("Connected Successfully");
+            } catch (Exception ex) {
+                Console.WriteLine("Not connected because of the error : ",ex.Message);
+            }
+            return conn;
+        }
+        
+        public string Insert()
+        {
+            SqlConnection? conn = DBConnection();
+            try
+            {
+                StringBuilder stringbuilderObject = new StringBuilder();
+                stringbuilderObject.Append("INSERT INTO Customer (CustomerId,CustomerFirstName,CustomerLastName) VALUES");
+                stringbuilderObject.Append("(11012,'Jane','Potter'),");
+                stringbuilderObject.Append("(11013,'Mat','Chip'),");
+                stringbuilderObject.Append("(11014,'Diana','Small')");
+
+                string sqlQuery = stringbuilderObject.ToString();
+
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+                {
+                    Console.WriteLine("Sql query execution : ", sqlQuery);
+                    cmd.ExecuteNonQuery();
+
+
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(" Not Connected : ", ex.Message);
+                Console.WriteLine(" Query Not Executed : ", ex.Message);
             }
+            finally { conn.Close(); }
 
-            StringBuilder stringbuilderObject = new StringBuilder();
-            stringbuilderObject.Append("INSER INTO Customer (CustomerId,CustomerFirstName,CustomerLastName) VALUES");
-            //("(N'Harsh', N'harsh@gmail.com', N'Class X'), ");
-            stringbuilderObject.Append("(N'1109,N'Maggie',N'Dun'),");
-            stringbuilderObject.Append("(N'11010,N'Ruth',N'Chip'),");
-            stringbuilderObject.Append("(N'11011,N'Rose',N'Small'),");
+            
+            return "Query Executed";
 
-            string sqlQuery = stringbuilderObject.ToString();
-            using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+
+        }
+
+       
+        public string Fetch()
+        {
+            SqlConnection conn = DBConnection();
+            try
             {
-                cmd.ExecuteNonQuery();
-                //Console.WriteLine("Query Executed");
+                StringBuilder stringbuilderObject = new StringBuilder();
+                stringbuilderObject.Append("Select * from Customer");
+                
+                string sqlQuery = stringbuilderObject.ToString();
+
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+              
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine(String.Format("{0} {1} {2}",
+                          reader[0], reader[1] ,reader[2]));
+                    }
+                    Console.WriteLine("Sql query execution :", sqlQuery);
+
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(" Query Not Executed : ", ex.Message);
+            }
+            finally { conn.Close(); }
+
+
             return "Query Executed";
 
 
         }
     }
+
+    
 }
