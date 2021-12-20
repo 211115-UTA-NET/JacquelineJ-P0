@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,10 +10,27 @@ namespace ProjectP0
 {
     public class SqlConnectionApp
     {
-       private SqlConnection DBConnection()
+        public string sqlProperties()
         {
-            string connectString = "Data Source=2111-sql-jack.database.windows.net;Initial Catalog=jackie_Project0DB;Persist Security Info=False;User ID=SQLDBADMIN;Password=MyFav1234%";
+            StringBuilder stringbuilderObject = new StringBuilder();
+            string path = "C:\\Users\\ashwi\\OneDrive\\Desktop\\.NET\\PROJECT0\\DBproperties.txt";
+            StreamReader reader = new StreamReader(path);
+            stringbuilderObject.Append("Data Source=2111-sql-jack.database.windows.net;Initial Catalog=jackie_Project0DB;Persist Security Info=False;User ID=");
+            stringbuilderObject.Append(reader.ReadLine());
+            stringbuilderObject.Append("; Password =");
+            stringbuilderObject.Append(reader.ReadLine());
+            reader.Close();
+            string connectStr= stringbuilderObject.ToString();
 
+            return (connectStr);
+
+
+        }
+
+        public SqlConnection DBConnection(string connectString_)
+        {
+
+            string connectString = sqlProperties();
             SqlConnection conn = new SqlConnection(connectString);
             try
             {
@@ -24,21 +42,21 @@ namespace ProjectP0
             }
             return conn;
         }
-        
-        public string Insert()
+        /*
+        public string Insert(string sqlQuery)
         {
             SqlConnection? conn = DBConnection();
             try
             {
-                StringBuilder stringbuilderObject = new StringBuilder();
+               /* StringBuilder stringbuilderObject = new StringBuilder();
                 stringbuilderObject.Append("INSERT INTO Customer (CustomerId,CustomerFirstName,CustomerLastName) VALUES");
                 stringbuilderObject.Append("(11012,'Jane','Potter'),");
                 stringbuilderObject.Append("(11013,'Mat','Chip'),");
                 stringbuilderObject.Append("(11014,'Diana','Small')");
 
-                string sqlQuery = stringbuilderObject.ToString();
+                string sqlQuery = stringbuilderObject.ToString();*/
 
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+                /*using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
                 {
                     Console.WriteLine("Sql query execution : ", sqlQuery);
                     cmd.ExecuteNonQuery();
@@ -58,18 +76,18 @@ namespace ProjectP0
 
         }
 
-       
-        public string Fetch()
+        public string Fetch(string sqlQuery)
         {
             SqlConnection conn = DBConnection();
             try
             {
-                StringBuilder stringbuilderObject = new StringBuilder();
-                stringbuilderObject.Append("Select * from Customer");
+               /* StringBuilder stringbuilderObject = new StringBuilder();
+                //stringbuilderObject.Append("Select * from Customer");
+                stringbuilderObject.Append("Select * from Customer where CustomerFirstName= 'Faith'");
                 
-                string sqlQuery = stringbuilderObject.ToString();
+                string sqlQuery = stringbuilderObject.ToString();*/
 
-                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                /*SqlCommand command = new SqlCommand(sqlQuery, conn);
               
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -90,9 +108,10 @@ namespace ProjectP0
 
 
             return "Query Executed";
+    
 
 
-        }
+        }*/
     }
 
     

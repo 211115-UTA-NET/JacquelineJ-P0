@@ -8,11 +8,14 @@ namespace ProjectP0
 {
     public class Customer
     {
-        public int CustomerId { get; set; }
-        public string? CustomerFirstName { get; set; }
+        public int customer_Id { get; set; }
+        public string? customer_FirstName { get; set; }
         
-        public string? CustomerLastName { get; set; }
-           
+        public string? customer_LastName { get; set; }
+        public string? customer_City { get; set; }
+        public string? customer_State { get; set; }
+
+        
     }
 }
 
