@@ -8,9 +8,9 @@ namespace ProjectP0
 
     public class Program
     {
-       public static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Below are the actions list :"); 
+            Console.WriteLine("Below are the actions list :");
             Console.WriteLine("1.Add a Customer  ");
             Console.WriteLine("2.Select a customer by name");
             Console.WriteLine("3.Display all the customers");
@@ -21,94 +21,59 @@ namespace ProjectP0
             Console.WriteLine("8.Select order details by order_Id ");
             Console.WriteLine("9.Exit");
             Console.WriteLine("Please enter action you want to perform: ");
-            int actionNum=Convert.ToInt32(Console.ReadLine());
+            int actionNum = Convert.ToInt32(Console.ReadLine());
 
             CustomerController customerControllerObj = new CustomerController();
             ProductController productControllerObj = new ProductController();
             StoreController storeControllerObj = new StoreController();
             OrderController orderControllerObj = new OrderController();
-           
-                switch (actionNum)
-                {
-                    case 1:
-                        Console.WriteLine("Calling Customer Add...");
 
-                        customerControllerObj.add();
-                        break;
-                    case 2:
-                        Console.WriteLine("Fetching a customer details...");
-                        Console.WriteLine("Enter Customer Name : ");
-                        string c_Name = Console.ReadLine();
-                        customerControllerObj.results(c_Name);
-                        break;
-                    case 3:
-                        Console.WriteLine("Fetching a customer details...");
-                        customerControllerObj.results(null);
-                        break;
-                    case 4:
-                        Console.WriteLine("Fecting products...");
-                        productControllerObj.results_Pro();
-                        break;
-                    case 5:
-                        Console.WriteLine("Fetch Store details...");
-                        storeControllerObj.results();
-                        break;
-                    case 6:
-                        Console.WriteLine("Adding an Order...");
-                        orderControllerObj.add();
-                        break;
-                    case 7:
-                        Console.WriteLine("Fetch all orders.. ");
-                        orderControllerObj.getOrders(null);
-                        break;
-                    case 8:
-                        Console.WriteLine("Fetch order for orderId.. ");
-                        Console.WriteLine("Enter OrderID : ");
-                        string orderId = Console.ReadLine();
-                        orderControllerObj.getOrders(orderId);
-                        break;
-                    case 9:
-                        return;
+            switch (actionNum)
+            {
+                case 1:
+                    Console.WriteLine("Calling Customer Add...");
 
-                }
-            };
+                    customerControllerObj.add();
+                    break;
+                case 2:
+                    Console.WriteLine("Fetching a customer details...");
+                    Console.WriteLine("Enter Customer Name : ");
+                    string c_Name = Console.ReadLine();
+                    customerControllerObj.results(c_Name);
+                    break;
+                case 3:
+                    Console.WriteLine("Fetching a customer details...");
+                    customerControllerObj.results(null);
+                    break;
+                case 4:
+                    Console.WriteLine("Fecting products...");
+                    productControllerObj.results_Pro();
+                    break;
+                case 5:
+                    Console.WriteLine("Fetch Store details...");
+                    storeControllerObj.results();
+                    break;
+                case 6:
+                    Console.WriteLine("Adding an Order...");
+                    orderControllerObj.add();
+                    break;
+                case 7:
+                    Console.WriteLine("Fetch all orders.. ");
+                    orderControllerObj.getOrders(null);
+                    break;
+                case 8:
+                    Console.WriteLine("Fetch order for orderId.. ");
+                    Console.WriteLine("Enter OrderID : ");
+                    string orderId = Console.ReadLine();
+                    orderControllerObj.getOrders(orderId);
+                    break;
+                case 9:
+                    return;
+
+            }
 
 
-/*
-
-                    Console.WriteLine("Calling Product actions...");
-            ProductController productControllerObj = new ProductController();
-
-            Console.WriteLine("Calling get results...");
-            productControllerObj.results_Pro();
-            Console.WriteLine("productController actions complete...");
-
-            Console.WriteLine("Calling Customer actions...");
-            CustomerController customerControllerObj = new CustomerController();
-            customerControllerObj.add();
-            Console.WriteLine("Fetching customer details...");
-            Console.WriteLine("Enter Customer Name : ");
-            string c_Name = Console.ReadLine();
-            customerControllerObj.results(c_Name);
-            Console.WriteLine("customer actions complete...");
-
-            Console.WriteLine("Calling Store actions...");
-            StoreController storeControllerObj = new StoreController();
-            Console.WriteLine("Fetch Store results...");
-            storeControllerObj.results();
-            Console.WriteLine("Store actions complete...");
-
-            Console.WriteLine("Calling Order actions...");
-            OrderController orderControllerObj = new OrderController();
-            Console.WriteLine("Fetch Order results...");
-            Console.WriteLine("Enter OrderID : ");
-            string orderId = Console.ReadLine();
-            orderControllerObj.getOrders(orderId);
-            Console.WriteLine("Add Order...");
-            orderControllerObj.add();
-            Console.WriteLine("Order actions complete...");*/
-
-            Console.ReadKey();      
+            Console.ReadKey();
         }
     }
 }
