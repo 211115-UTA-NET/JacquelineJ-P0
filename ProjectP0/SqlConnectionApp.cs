@@ -10,7 +10,7 @@ namespace ProjectP0
 {
     public class SqlConnectionApp
     {
-        public string sqlProperties()
+        private string sqlProperties()
         {
             StringBuilder stringbuilderObject = new StringBuilder();
             string path = "C:\\Users\\ashwi\\OneDrive\\Desktop\\.NET\\PROJECT0\\DBproperties.txt";
@@ -20,14 +20,11 @@ namespace ProjectP0
             stringbuilderObject.Append("; Password =");
             stringbuilderObject.Append(reader.ReadLine());
             reader.Close();
-            string connectStr= stringbuilderObject.ToString();
-
+            string connectStr = stringbuilderObject.ToString();
             return (connectStr);
-
-
         }
 
-        public SqlConnection DBConnection(string connectString_)
+        public SqlConnection DBConnection()
         {
 
             string connectString = sqlProperties();
@@ -37,31 +34,26 @@ namespace ProjectP0
                 Console.WriteLine("Connecting to databse...");
                 conn.Open();
                 Console.WriteLine("Connected Successfully");
-            } catch (Exception ex) {
-                Console.WriteLine("Not connected because of the error : ",ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Not connected because of the error : ", ex.Message);
             }
             return conn;
         }
-        /*
-        public string Insert(string sqlQuery)
+
+        public string Insert(string sqlQuery, SqlConnection conn)
         {
-            SqlConnection? conn = DBConnection();
+            if (conn is null || sqlQuery is null)
+            {
+                return "do nothing as connection object is null";
+            }
             try
             {
-               /* StringBuilder stringbuilderObject = new StringBuilder();
-                stringbuilderObject.Append("INSERT INTO Customer (CustomerId,CustomerFirstName,CustomerLastName) VALUES");
-                stringbuilderObject.Append("(11012,'Jane','Potter'),");
-                stringbuilderObject.Append("(11013,'Mat','Chip'),");
-                stringbuilderObject.Append("(11014,'Diana','Small')");
-
-                string sqlQuery = stringbuilderObject.ToString();*/
-
-                /*using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
                 {
                     Console.WriteLine("Sql query execution : ", sqlQuery);
-                    cmd.ExecuteNonQuery();
-
-
+                    cmd.ExecuteNonQuery();                    
                 }
             }
             catch (Exception ex)
@@ -70,48 +62,108 @@ namespace ProjectP0
             }
             finally { conn.Close(); }
 
-            
             return "Query Executed";
-
-
         }
 
-        public string Fetch(string sqlQuery)
+        /* public List<Customer> Fetch(string sqlQuery, SqlConnection conn)
+         {
+             List<Customer> customerList = new List<Customer>();
+             if (conn is null || sqlQuery is null)
+             {
+                 return customerList;
+             }
+
+             try
+             {
+                 SqlCommand command = new SqlCommand(sqlQuery, conn);
+                 Customer customerObj = null;
+                 using (SqlDataReader reader = command.ExecuteReader())
+                 {
+                     while (reader.Read())
+                     {
+                         customerObj = new Customer();
+                         customerObj.customer_Id = reader.GetInt32(0);
+                         customerObj.customer_FirstName = reader.GetString(1);
+                         customerList.Add(customerObj);
+
+                     }
+                     Console.WriteLine("Sql query execution :", sqlQuery);
+
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine(" Query Not Executed : ", ex.Message);
+             }
+             finally { conn.Close(); }
+
+             return customerList;
+
+         }
+
+         /* public List<Orders> Fetch(string sqlQuery, SqlConnection conn)
+          {
+              List<Orders> orderList = new List<Orders>();
+              if (conn is null || sqlQuery is null)
+              {
+                  return null;
+              }
+              /*orderList.customer_Id = reader.GetInt32(0);
+                          orderList.customer_FirstName = reader.GetString(1);
+                          orderList.Add(customerObj);*/
+        /*
+             try
+             {
+                 SqlCommand command = new SqlCommand(sqlQuery, conn);
+                 Orders orderObj = null;
+                 using (SqlDataReader reader = command.ExecuteReader())
+                 {
+                     while (reader.Read())
+                     {
+                         orderObj = new Orders();
+                         orderList.OrderID = reader.GetInt32(0);
+                         orderList.CustomerId = reader.GetInt32(0);
+                         orderList.ProductId = reader.GetInt32(0);
+                         orderList.Quantity = reader.GetInt32(0);
+                         orderList.Add(orderObj);
+                     }
+                     Console.WriteLine("Sql query execution :", sqlQuery);
+
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine(" Query Not Executed : ", ex.Message);
+             }
+             finally { conn.Close(); }
+
+             return orderList;
+         }*/
+
+        public SqlDataReader FetchProducts(string sqlQuery, SqlConnection conn)
         {
-            SqlConnection conn = DBConnection();
+            List<Product> productList = new List<Product>();
+            SqlDataReader reader = null;
+            if (conn is null || sqlQuery is null)
+            {
+                return null;
+            }
+
             try
             {
-               /* StringBuilder stringbuilderObject = new StringBuilder();
-                //stringbuilderObject.Append("Select * from Customer");
-                stringbuilderObject.Append("Select * from Customer where CustomerFirstName= 'Faith'");
-                
-                string sqlQuery = stringbuilderObject.ToString();*/
-
-                /*SqlCommand command = new SqlCommand(sqlQuery, conn);
-              
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(String.Format("{0} {1} {2}",
-                          reader[0], reader[1] ,reader[2]));
-                    }
-                    Console.WriteLine("Sql query execution :", sqlQuery);
-
-                }
+                SqlCommand command = new SqlCommand(sqlQuery, conn);
+                Console.WriteLine("Sql query execution :"+ sqlQuery);
+                reader = command.ExecuteReader();
+                return reader;                       
             }
             catch (Exception ex)
             {
-                Console.WriteLine(" Query Not Executed : ", ex.Message);
+                Console.WriteLine(" Query Not Executed : "+ ex.Message);
             }
-            finally { conn.Close(); }
+            
+            return reader;
 
-
-            return "Query Executed";
-    
-
-
-        }*/
+        }
     }
 
     

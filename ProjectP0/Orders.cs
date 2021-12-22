@@ -8,24 +8,36 @@ namespace ProjectP0
 {
     public class Orders
     {
-        private int OrderId { get; set; }
-        private int CustomerId { get; set; }
-        private int ProductId { get; set; }
-        private int Quantity { get; set; }
+        private int orderID;
+        private int customerId; 
+        private int productId; 
+        private int quantity; 
+        private DateTime orderTime;
 
-        public Orders()
+        public int OrderID   // property
         {
-            OrderId = 0;
-            CustomerId = 0;
-            ProductId = 0;
-            Quantity = 0;
+            get { return orderID; }   // get method
+            set { orderID = value; }  // set method
         }
-        public Orders(int or_Id,int c_Id,int pro_Id,int quan)
+        public int CustomerId   // property
         {
-            OrderId = or_Id;
-            CustomerId = c_Id;
-            ProductId = pro_Id;
-            Quantity = quan;
+            get { return customerId; }   // get method
+            set { customerId = value; }  // set method
+        }
+        public int ProductId   // property
+        {
+            get { return productId; }   // get method
+            set { productId = value; }  // set method
+        }
+        public int Quantity   // property
+        {
+            get { return quantity; }   // get method
+            set { quantity = value; }  // set method
+        }
+        public DateTime OrderTime   // property
+        {
+            get { return orderTime; }   // get method
+            set { orderTime = value; }  // set method
         }
     }
 }

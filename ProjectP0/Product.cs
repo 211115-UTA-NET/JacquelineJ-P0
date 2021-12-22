@@ -2,25 +2,36 @@
 {
     public class Product
     {
-        private int  ProductId { get; set; }
-        public string? ProductName { get; set; }
-        private int StoreId { get; set; }
-        public decimal ProductPrice { get; set; }
-
-        public Product()
+        private int productId;
+        public int ProductId   // property
         {
-            ProductId = 0;
-            ProductName = "product1";
-            StoreId = 0;
-            ProductPrice = 0.00M;
+            get { return productId; }   // get method
+            set { productId = value; }  // set method
+        }
+        private string? productName;
+        public string? ProductName   // property
+        {
+            get { return productName; }   // get method
+            set { productName = value; }  // set method
         }
 
-        public Product(int proID,string proName,int store_Id, decimal proCost)
+
+        private int storeId;
+        public int StoreId   // property
         {
-            ProductId = proID;
-            ProductName = proName;
-            StoreId=store_Id;
-            ProductPrice = proCost;
+            get { return storeId; }   // get method
+            set { storeId = value; }  // set method
         }
+        private decimal productPrice;
+        public decimal ProductPrice   // property
+        {
+            get { return productPrice; }   // get method
+            set { productPrice = value; }  // set method
+        }
+
+
+
+
+
     }
 }
