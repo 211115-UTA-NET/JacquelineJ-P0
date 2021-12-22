@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectP0
 {
-    public class OrderController
+    public class OrderController : IInsertInTables
     {
         public void add()
         {
@@ -26,42 +26,7 @@ namespace ProjectP0
             objDB.Insert(sqlQuery, connectionObj);
             Console.WriteLine("Insert Complete...");
 
-            /*
-            Console.WriteLine("Enter Number of products : ");
-            int numberOfProducts = Convert.ToInt32(Console.ReadLine());
-            if (numberOfProducts > 1)
-            {
-                stringbuilderObject.Append("INSERT INTO Orders (OrderID,CustomerId,ProductID,Quantity) VALUES");
-                //stringbuilderObject.Append("(1106, 6, 6, 7");
-                //stringbuilderObject.Append("(1106, 6, 5, 2");
-                stringbuilderObject.Append("(orderId,");
-                Console.WriteLine("Enter CustomerId");
-                stringbuilderObject.Append(Console.ReadLine());
-                Console.WriteLine("Enter ProductID");
-                stringbuilderObject.Append(Console.ReadLine());
-                Console.WriteLine("Enter Product Quantity : ");
-                stringbuilderObject.Append(Console.ReadLine());
-                sqlQuery = stringbuilderObject.ToString();
-                Console.WriteLine("Inserting into Order table: "+sqlQuery);
-                objDB.Insert(sqlQuery, connectionObj);
-                Console.WriteLine("Insert Complete...");
-            }
-            else {
-                stringbuilderObject.Append("INSERT INTO Orders (OrderID,CustomerId,ProductID,Quantity) VALUES");
-                stringbuilderObject.Append("(orderId,");
-                Console.WriteLine("Enter CustomerId");
-                stringbuilderObject.Append(Console.ReadLine());
-                Console.WriteLine("Enter ProductID");
-                stringbuilderObject.Append(Console.ReadLine());
-                Console.WriteLine("Enter Product Quantity : ");
-                stringbuilderObject.Append(Console.ReadLine());
-                sqlQuery = stringbuilderObject.ToString();
-                Console.WriteLine("Inserting into Order table: "+sqlQuery);
-                objDB.Insert(sqlQuery, connectionObj);
-                Console.WriteLine("Insert Complete...");
-            }
-            */
-            //conn.Close();
+            
         }
         public void getOrders(string orderId)
         {

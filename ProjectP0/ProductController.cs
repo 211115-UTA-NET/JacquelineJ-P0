@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectP0
 {
-    public class ProductController
+    public class ProductController : IInsertInTables
     {
         public void add()
         {

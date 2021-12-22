@@ -9,25 +9,26 @@ namespace ProjectP0
     public class Store
     {
         private int storeId;
+        private string? storeName;
+        private string? store_Address;
+        private int store_Zip;
+
         public int StoreId   // property
         {
             get { return storeId; }   // get method
             set { storeId = value; }  // set method
         }
-        private string? storeName;
-        public string? StoreName   // property
+       public string? StoreName   // property
         {
             get { return storeName; }   // get method
             set { storeName = value; }  // set method
         }
-        private string? store_Address;
-        public string? Store_Address  // property
+       public string? Store_Address  // property
         {
             get { return store_Address; }   // get method
             set { store_Address = value; }  // set method
         }
-        private int store_Zip;
-        public int Store_Zip   // property
+       public int Store_Zip   // property
         {
             get { return store_Zip; }   // get method
             set { store_Zip = value; }  // set method

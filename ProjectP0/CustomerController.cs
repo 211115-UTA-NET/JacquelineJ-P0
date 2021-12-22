@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectP0
 {
-    public class CustomerController
+    public class CustomerController : IInsertInTables
     {
         public void add()
         {

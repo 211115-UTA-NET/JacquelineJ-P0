@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectP0
 {
-    public class StoreController
+    public class StoreController : IInsertInTables
     {
         public void add()
         {
@@ -17,12 +17,8 @@ namespace ProjectP0
 
             StringBuilder stringbuilderObject = new StringBuilder();
             stringbuilderObject.Append("INSERT INTO Store (StoreId,StoreName,S_Address,ZipCode) VALUES");
-            //    stringbuilderObject.Append("(11012,'Jane','Potter'),");
-            //  stringbuilderObject.Append("(11013,'Mat','Chip'),");
             stringbuilderObject.Append("(123,'Belmont ','Glastonbury',06064)");
-
             string sqlQuery = stringbuilderObject.ToString();
-
             Console.WriteLine("Inserting into Store table");
             objDB.Insert(sqlQuery, connectionObj);
             Console.WriteLine("Insert Complete...");
