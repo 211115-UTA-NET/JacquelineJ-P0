@@ -17,11 +17,11 @@ namespace ProjectP0
 
             StringBuilder stringbuilderObject = new StringBuilder();
             stringbuilderObject.Append("INSERT INTO Store (StoreId,StoreName,S_Address,ZipCode) VALUES");
-            stringbuilderObject.Append("(123,'Belmont ','Glastonbury',06064)");
+            stringbuilderObject.Append("(124,'Bushnell ','Glastonbury',06064)");
             string sqlQuery = stringbuilderObject.ToString();
-            Console.WriteLine("Inserting into Store table");
+            //Console.WriteLine("Inserting into Store table");
             objDB.Insert(sqlQuery, connectionObj);
-            Console.WriteLine("Insert Complete...");
+            //Console.WriteLine("Insert Complete...");
 
         }
         public void results()
@@ -31,7 +31,7 @@ namespace ProjectP0
             List<Store> storeList = new List<Store>();
 
             string storeSelectQuery = "Select * from Store";
-            Console.WriteLine("StoreController : results : Fetching from Store table" + storeSelectQuery);
+            //Console.WriteLine("StoreController : results : Fetching from Store table" + storeSelectQuery);
             try
             {
                 SqlDataReader reader = objDB.FetchProducts(storeSelectQuery, connectionObj);
@@ -61,7 +61,7 @@ namespace ProjectP0
                 Console.WriteLine("Store-Id: " + item.StoreId + "  Store-Name: " + item.StoreName+ " Store-Address: " + item.Store_Address + " Zipcode :  " + item.Store_Zip);
 
             }
-            Console.WriteLine("Fetch Complete...");
+            //Console.WriteLine("Fetch Complete...");
 
         }
     }

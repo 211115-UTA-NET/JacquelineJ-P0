@@ -31,9 +31,9 @@ namespace ProjectP0
             SqlConnection conn = new SqlConnection(connectString);
             try
             {
-                Console.WriteLine("Connecting to databse...");
+                //Console.WriteLine("Connecting to databse...");
                 conn.Open();
-                Console.WriteLine("Connected Successfully");
+                //Console.WriteLine("Connected Successfully");
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace ProjectP0
             try
             {
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                Console.WriteLine("Sql query execution :"+ sqlQuery);
+                //Console.WriteLine("Sql query execution :"+ sqlQuery);
                 reader = command.ExecuteReader();
                 return reader;                       
             }

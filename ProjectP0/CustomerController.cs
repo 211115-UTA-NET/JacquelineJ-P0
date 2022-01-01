@@ -16,18 +16,21 @@ namespace ProjectP0
             SqlConnection connectionObj = objDB.DBConnection();
                 
             StringBuilder stringbuilderObject = new StringBuilder();
-            stringbuilderObject.Append("INSERT INTO Customer (CustomerId,CustomerFirstName,CustomerLastName) VALUES");
-        
-            stringbuilderObject.Append("(11018,'Tania','Renna')");
-
+            Console.WriteLine("Enter Customer First Name,Last Name,Customer City and State ");
+            
+            string firstName = Console.ReadLine();
+            string lastName = Console.ReadLine();
+            string customer_City = Console.ReadLine();
+            string customer_State = Console.ReadLine();
+            
+            stringbuilderObject.Append("INSERT INTO Customer (CustomerFirstName, CustomerLastName, C_Address1, C_Address2) VALUES ");
+            stringbuilderObject.Append("('" + firstName + "',"+ "'" + lastName + "',"+ "'" + customer_City + "',"+ "'" + customer_State + "')");
             string sqlQuery = stringbuilderObject.ToString();
-
-            Console.WriteLine("Inserting into Customer table");
+           // Console.WriteLine("Inserting into Customer table");
             objDB.Insert(sqlQuery, connectionObj);
-            Console.WriteLine("Insert Complete...");
-
+            //Console.WriteLine("Insert Complete...");
         }
-
+        
         public void results(string cusName)
         {
             SqlConnectionApp objDB = new SqlConnectionApp();
@@ -42,7 +45,7 @@ namespace ProjectP0
                 stringBuilderObj.Append(" Where CustomerLastName = '" + cusName + "'");
             }
             string Query = stringBuilderObj.ToString();
-            Console.WriteLine("CustomerController : results : Fetching from Customer table" + Query);
+            //Console.WriteLine("CustomerController : results : Fetching from Customer table" + Query);
             try
             {
                 SqlDataReader reader = objDB.FetchProducts(Query, connectionObj);
@@ -60,7 +63,7 @@ namespace ProjectP0
                         customerObj.Customer_State = reader.GetString(4);
                         customerList.Add(customerObj);
                     }
-                    Console.WriteLine("Customer objects created :");
+                    //Console.WriteLine("Customer objects created :");
 
                 }
             }

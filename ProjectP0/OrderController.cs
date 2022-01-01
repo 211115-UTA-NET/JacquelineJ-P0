@@ -9,6 +9,7 @@ namespace ProjectP0
 {
     public class OrderController : IInsertInTables
     {
+
         public void add()
         {
 
@@ -17,17 +18,24 @@ namespace ProjectP0
             string sqlQuery;
 
             StringBuilder stringbuilderObject = new StringBuilder();
-            stringbuilderObject.Append("INSERT INTO Orders (OrderID,CustomerId,ProductID,Quantity) VALUES");
-            stringbuilderObject.Append("(5006, 1104, 4, 7),");
-            stringbuilderObject.Append("(5006, 1104, 7, 2)");
+
+            Console.WriteLine("Enter Order Details Customer ID, Product ID, Qunatity");
+            string Cus_ID = Console.ReadLine();
+            string Product_ID = Console.ReadLine();
+            string Qunatity = Console.ReadLine();
+            
+            stringbuilderObject.Append("INSERT INTO Orders (CustomerId,ProductID,Quantity) VALUES");
+            stringbuilderObject.Append("(" + Cus_ID + "," + Product_ID + "," + Qunatity +")");
             sqlQuery = stringbuilderObject.ToString();
 
-            Console.WriteLine("Insert Orders query : "+sqlQuery);
+            //Console.WriteLine("Insert Orders query : "+sqlQuery);
             objDB.Insert(sqlQuery, connectionObj);
-            Console.WriteLine("Insert Complete...");
+            //Console.WriteLine("Insert Complete...");
 
             
         }
+        
+               
         public void getOrders(string orderId)
         {
             SqlConnectionApp objDB = new SqlConnectionApp();
@@ -45,7 +53,7 @@ namespace ProjectP0
             }
             string query = stringBuilderObj.ToString();
 
-            Console.WriteLine("OrderController : results : Fetching from Order table : " + query);
+            //Console.WriteLine("OrderController : results : Fetching from Order table : " + query);
             try
             {
                 SqlDataReader reader = objDB.FetchProducts(query, connectionObj);
@@ -76,7 +84,7 @@ namespace ProjectP0
                 Console.WriteLine("Order-Id: " + item.OrderID + "  Customer-Id: " + item.CustomerId + " Product-Id: " + item.ProductId + " Quantity :  " +item.Quantity);
 
             }
-            Console.WriteLine("Fetch Complete...");
+            //Console.WriteLine("Fetch Complete...");
 
         }
     }
