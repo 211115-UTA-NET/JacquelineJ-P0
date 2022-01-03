@@ -8,6 +8,6 @@ namespace ProjectP0
 {
    interface IInsertInTables
     {
-       void add();
+       void addOrderNew();
     }
 }

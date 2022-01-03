@@ -9,7 +9,7 @@ namespace ProjectP0
 {
     public class StoreController : IInsertInTables
     {
-        public void add()
+        public void addOrderNew()
         {
 
             SqlConnectionApp objDB = new SqlConnectionApp();
@@ -26,43 +26,49 @@ namespace ProjectP0
         }
         public void results()
         {
-            SqlConnectionApp objDB = new SqlConnectionApp();
-            SqlConnection connectionObj = objDB.DBConnection();
-            List<Store> storeList = new List<Store>();
-
-            string storeSelectQuery = "Select * from Store";
-            //Console.WriteLine("StoreController : results : Fetching from Store table" + storeSelectQuery);
-            try
-            {
-                SqlDataReader reader = objDB.FetchProducts(storeSelectQuery, connectionObj);
-                Store storeObj = null;
-
-                using (reader)
-                {
-                    while (reader.Read())
-                    {
-                        storeObj = new Store();
-                        storeObj.StoreId = reader.GetInt32(0);
-                        storeObj.StoreName = reader.GetString(1);
-                        storeObj.Store_Address = reader.GetString(2);
-                        storeObj.Store_Zip = reader.GetInt32(3);
-                        storeList.Add(storeObj);
-                    }
-           
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(" Query Not Executed : " + ex.Message);
-            }
-            finally { connectionObj.Close(); }
+            List<Store> storeList = getStores();
             foreach (Store item in storeList)
             {
                 Console.WriteLine("Store-Id: " + item.StoreId + "  Store-Name: " + item.StoreName+ " Store-Address: " + item.Store_Address + " Zipcode :  " + item.Store_Zip);
 
             }
-            //Console.WriteLine("Fetch Complete...");
+            Console.WriteLine("Fetch Complete...");
 
+        }
+
+        public List<Store> getStores()
+        {
+            SqlConnectionApp objDB = new SqlConnectionApp();
+            SqlConnection connectionObj = objDB.DBConnection();
+            string sqlQuery;
+            StringBuilder stringbuilderObject = new StringBuilder();
+
+            List<Store> storeList = new List<Store>();
+            using (connectionObj)
+            {
+                // Query to be executed
+                string queryString = "SELECT DISTINCT(S.STOREID) ,S.StoreName FROM STORE AS S,Product AS P   WHERE P.StoreId = S.StoreId ";
+                SqlCommand command = new SqlCommand(queryString, connectionObj);
+                try
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    Store storeObj;
+                    while (reader.Read())
+                    {
+                        storeObj = new Store();
+                        storeObj.StoreId = reader.GetInt32(0);
+                        storeObj.StoreName = reader.GetString(1);
+                        storeList.Add(storeObj);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(" Query Not Executed : " + ex.Message);
+                }
+                finally { connectionObj.Close(); }
+
+                return storeList;
+            }
         }
     }
 }

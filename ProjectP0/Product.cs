@@ -6,6 +6,8 @@
         private string? productName;
         private int storeId;
         private decimal productPrice;
+        private int productQuantity;
+
         public int ProductId   // property
         {
             get { return productId; }   // get method
@@ -28,6 +30,11 @@
         {
             get { return productPrice; }   // get method
             set { productPrice = value; }  // set method
+        }
+        public int ProductQuantity  // property
+        {
+            get { return productQuantity; }   // get method
+            set { productQuantity = value; }  // set method
         }
 
     }

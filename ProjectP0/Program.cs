@@ -22,8 +22,9 @@ namespace ProjectP0
                 Console.WriteLine("6.Add an Order");
                 Console.WriteLine("7.Display all orders ");
                 Console.WriteLine("8.Select order details by order_Id ");
-                Console.WriteLine("9.Add a Store ");
-                Console.WriteLine("10.Exit");
+                Console.WriteLine("9.Display Orders By Store ");
+                Console.WriteLine("10.Display Orders By Customer");
+                Console.WriteLine("11.Exit");
                 Console.WriteLine("********************************");
                 Console.WriteLine("Please enter action you want to perform: ");
                 int actionNum = Convert.ToInt32(Console.ReadLine());
@@ -33,12 +34,13 @@ namespace ProjectP0
                 ProductController productControllerObj = new ProductController();
                 StoreController storeControllerObj = new StoreController();
                 OrderController orderControllerObj = new OrderController();
+                OrderDetailsControllers orderDetailsControllerObj = new OrderDetailsControllers();
 
                 switch (actionNum)
                 {
                     case 1:
                         //Console.WriteLine("Adding a Customer ...");
-                        customerControllerObj.add();
+                        customerControllerObj.addOrderNew();
                         break;
                     case 2:
                         //Console.WriteLine("Fetching a customer details...");
@@ -59,26 +61,36 @@ namespace ProjectP0
                         storeControllerObj.results();
                         break;
                     case 6:
-                        //Console.WriteLine("Adding an Order...");
-                        orderControllerObj.add();
+                        Console.WriteLine("Adding an Order...");
+                        orderControllerObj.addOrderNew();
                         break;
                     case 7:
                         //Console.WriteLine("Fetch all orders.. ");
                         orderControllerObj.getOrders(null);
                         break;
                     case 8:
-                        //Console.WriteLine("Fetch order for orderId.. ");
+                        Console.WriteLine("Fetch order for orderId.. ");
                         Console.WriteLine("Enter OrderID : ");
                         string orderId = Console.ReadLine();
-                        orderControllerObj.getOrders(orderId);
+                        //orderControllerObj.getOrders(orderId);
+                        orderDetailsControllerObj.getOrderDetails(orderId);
                         break;
                     case 9:
-                        //Console.WriteLine("Adding a Store.. ");
-                        storeControllerObj.add();
+                        Console.WriteLine("Fetch order for StoreId.. ");
+                        Console.WriteLine("Enter StoreId : ");
+                        string storeId = Console.ReadLine();
+                        //orderControllerObj.getOrders(orderId);
+                        orderDetailsControllerObj.getOrdersByStore(storeId);
                         break;
                     case 10:
+                        Console.WriteLine("Fetch order for CustomerId.. ");
+                        Console.WriteLine("Enter CustomerId : ");
+                        string customerId = Console.ReadLine();
+                        //orderControllerObj.getOrders(orderId);
+                        orderDetailsControllerObj.getOrdersByCustomer(customerId);
+                        break;
+                    case 11:
                         return;
-
                 }
             }while(exit);
 

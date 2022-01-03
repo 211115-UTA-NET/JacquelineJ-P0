@@ -23,7 +23,7 @@ namespace ProjectP0
             string connectStr = stringbuilderObject.ToString();
             return (connectStr);
         }
-
+        
         public SqlConnection DBConnection()
         {
 
@@ -41,7 +41,7 @@ namespace ProjectP0
             }
             return conn;
         }
-
+        
         public string Insert(string sqlQuery, SqlConnection conn)
         {
             if (conn is null || sqlQuery is null)
@@ -78,7 +78,7 @@ namespace ProjectP0
             try
             {
                 SqlCommand command = new SqlCommand(sqlQuery, conn);
-                //Console.WriteLine("Sql query execution :"+ sqlQuery);
+                Console.WriteLine("Sql query execution :"+ sqlQuery);
                 reader = command.ExecuteReader();
                 return reader;                       
             }

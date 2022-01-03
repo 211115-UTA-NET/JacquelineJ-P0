@@ -10,7 +10,7 @@ namespace ProjectP0
 {
     public class ProductController : IInsertInTables
     {
-        public void add()
+        public void addOrderNew()
         {
 
             SqlConnectionApp objDB = new SqlConnectionApp();
@@ -24,7 +24,35 @@ namespace ProjectP0
             objDB.Insert(sqlQuery, connectionObj);
             Console.WriteLine("Insert Complete...");
         }
-        
+
+        public void updateProductQuantity(int productId, int productQuantity)
+        {
+            Console.WriteLine("Inside updateProductQuantity... productId-" + productId + " : Quantity-"+productQuantity);
+            SqlConnectionApp objDB = new SqlConnectionApp();
+            SqlConnection connectionObj = objDB.DBConnection();
+
+            StringBuilder stringbuilderObject = new StringBuilder();
+            stringbuilderObject.Append("update Product set ProductQuantity = @productQuantity");
+            stringbuilderObject.Append(" where productid = @productId");
+            string sqlQuery = stringbuilderObject.ToString();
+            SqlCommand command = new SqlCommand(sqlQuery, connectionObj);
+            command.Parameters.AddWithValue("@productQuantity", productQuantity);
+            command.Parameters.AddWithValue("@productId", productId);
+            Console.WriteLine("updateProductQuantity - Query - "+ sqlQuery);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                Console.WriteLine("updateProductQuantity - ExecuteNonQuery Complete");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { connectionObj.Close(); }
+            
+        }
+
         public void results_Pro()
         {
             SqlConnectionApp objDB = new SqlConnectionApp();
@@ -35,7 +63,7 @@ namespace ProjectP0
             //Console.WriteLine("ProductController : results : Fetching from Product table"+ productSelectQuery);
             try {
                 SqlDataReader reader = objDB.FetchProducts(productSelectQuery, connectionObj);
-                Product productObj = null;
+                Product productObj;
 
                 using (reader)
                 {
